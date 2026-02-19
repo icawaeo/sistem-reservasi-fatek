@@ -53,6 +53,9 @@ export default function AuthPage() {
         router.refresh();
       }
     } catch (err) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("Login error:", err);
+      }
       setError("Terjadi kesalahan saat login");
     } finally {
       setIsLoading(false);
@@ -103,6 +106,9 @@ export default function AuthPage() {
         router.refresh();
       }
     } catch (err) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("Register error:", err);
+      }
       setError("Terjadi kesalahan saat registrasi");
     } finally {
       setIsLoading(false);
@@ -215,12 +221,9 @@ export default function AuthPage() {
             </div>
 
             <div className="text-right">
-              <a
-                href="#"
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >
+              <span className="text-sm text-gray-400">
                 Lupa Kata Sandi?
-              </a>
+              </span>
             </div>
 
             <button

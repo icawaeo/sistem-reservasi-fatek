@@ -98,7 +98,9 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Register error:", error);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Register error:", error instanceof Error ? error.message : "Unknown error");
+    }
     return NextResponse.json(
       { error: "Terjadi kesalahan saat registrasi" },
       { status: 500 }
